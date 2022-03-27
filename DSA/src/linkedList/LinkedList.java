@@ -309,7 +309,7 @@ public class LinkedList {
 //		list.deleteAtEnd();
 //		list.deleteAtFirst();
 //		System.out.println(list.deleteAtIndex(4));
-//		list.loopExistsOrNot(list.head);
+		LinkedList.loopExistsOrNot(list.head);
 		System.out.println();
 		System.out.println(list.size);
 		list.display();
