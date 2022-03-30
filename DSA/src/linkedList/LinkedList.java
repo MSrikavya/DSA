@@ -102,6 +102,28 @@ public class LinkedList {
 		}
 	}
 
+	public ListNode partition(ListNode head, int k) {
+		ListNode root = new ListNode(0);
+		ListNode pivot = new ListNode(k);
+		ListNode rootNext = root, pivotNext = pivot;
+		ListNode currentNode = head;
+		while (currentNode != null) {
+			ListNode next = currentNode.next;
+			if (currentNode.data >= k) {
+				pivotNext.next = currentNode;
+				pivotNext = currentNode;
+				pivotNext.next = null;
+			} else {
+				rootNext.next = currentNode;
+				rootNext = currentNode;
+			}
+			currentNode = next;
+		}
+
+		rootNext.next = pivot.next;
+		return root.next;
+	}
+
 	public int getMiddleValue() {
 		ListNode node1, node2;
 		node1 = node2 = head;
@@ -145,6 +167,14 @@ public class LinkedList {
 	}
 
 	public void display() {
+		ListNode temp = head;
+		while (temp != null) {
+			System.out.print(temp.getData() + " -> ");
+			temp = temp.getNext();
+		}
+	}
+
+	public void display(ListNode head) {
 		ListNode temp = head;
 		while (temp != null) {
 			System.out.print(temp.getData() + " -> ");
@@ -283,6 +313,8 @@ public class LinkedList {
 	public static void main(String[] args) {
 		LinkedList list = new LinkedList();
 		LinkedList list2 = new LinkedList();
+		LinkedList list3 = new LinkedList();
+
 		list.insertAtFirst(1);
 		list.insertAtEnd(2);
 		list.insertAtEnd(3);
@@ -299,12 +331,22 @@ public class LinkedList {
 		list2.insertAtEnd(16);
 		list2.insertAtEnd(19);
 
-		list2.bubbleSort();
-		list2.display();
+		list3.insertAtFirst(1);
+		list3.insertAtEnd(4);
+		list3.insertAtEnd(3);
+		list3.insertAtEnd(2);
+		list3.insertAtEnd(6);
+		list3.insertAtEnd(5);
+		list3.insertAtEnd(2);
+
+//		list2.bubbleSort();
+		list3.display();
 		System.out.println();
 
-		LinkedList mergedList = LinkedList.merge(list, list2);
-		mergedList.display();
+		ListNode temp = list3.partition(list3.head, 3);
+		list3.display(temp);
+//		LinkedList mergedList = LinkedList.merge(list, list2);
+//		mergedList.display();
 
 //		list.deleteAtEnd();
 //		list.deleteAtFirst();

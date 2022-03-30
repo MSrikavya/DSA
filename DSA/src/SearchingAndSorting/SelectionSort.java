@@ -29,7 +29,6 @@ public class SelectionSort {
 					break;
 				}
 			}
-
 			selectionSort(A, n - 1);
 		}
 	}
